@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root">
+        <button @click="add">增加</button>
+        <button @click="shit">删除</button>
+        <button @click = 'sort'>翻转</button>
+        <h2>使用id作为key</h2>
+        <ul>
+            <li v-for="(city, index) in citys" :key="city.id">
+             {{city.id}}--{{city.name}}--{{city.age}}
+            </li>
+        </ul>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#root',
+            data(){
+              return{
+                citys:[
+                        {id:1,name:'小白',age:1},
+                        {id:2,name:'小黑',age:2}
+                    ]
+              } 
+            },
+            methods: {
+                add(){
+                   this.citys.unshift({id:this.citys.length + 1,name:'我笑了',age:this.citys.length + 1})
+                },
+                shit(){
+                   this.citys.shift()
+                },
+                sort(){
+                    this.citys.sort((a,b)=>
+                       a.age - b.age
+                    )
+                }
+            },
+        })
+    </script>
+</body>
+</html>
